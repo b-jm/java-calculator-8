@@ -21,6 +21,20 @@ public class Calculator {
 
     private int parsePositiveNumber(String input) {
         // 빈 문자열 또는 null은 0으로 처리
-        return 0;
+        if (input == null || input.isBlank()) {
+            return 0;
+        }
+
+        try {
+            int value = Integer.parseInt(input.trim());
+
+            if (value < 0) {
+                throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
+            }
+
+            return value;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_ERROR);
+        }
     }
 }
