@@ -1,21 +1,26 @@
 package calculator.domain;
 
+import java.util.List;
+
 public class Calculator {
 
-    // 양수의 합
-    public int sum(String input) {
-        String[] numbers = split(input);
+    // 에러 메시지를 상수로 선언
+    private static final String NEGATIVE_NUMBER_ERROR = "음수는 입력할 수 없습니다";
+    private static final String INVALID_NUMBER_ERROR = "숫자가 아닌 값이 포함되어 있습니다";
 
-        int sum = 0;
+    public int calculateSum(List<String> numbers) {
+        int total = 0;
+
         for (String number : numbers) {
-            sum += Integer.parseInt(number);
+            int value = parsePositiveNumber(number);
+            total += value;
         }
 
-        return sum;
+        return total;
     }
 
-    // 기본 구분자로 구분하기
-    private String[] split(String input) {
-        return input.split(",|:");
+    private int parsePositiveNumber(String input) {
+        // 빈 문자열 또는 null은 0으로 처리
+        return 0;
     }
 }
